@@ -18,5 +18,36 @@ module.exports = defineConfig({
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     }
-  }
+  },
+   modules: {
+    [COMPANY_MODULE]: {
+      resolve: "./modules/company",
+    },
+    [QUOTE_MODULE]: {
+      resolve: "./modules/quote",
+    },
+    [APPROVAL_MODULE]: {
+      resolve: "./modules/approval",
+    },
+    [Modules.CACHE]: {
+      resolve: "@medusajs/medusa/cache-redis",
+      options: {
+        redisUrl: process.env.REDIS_URL,
+      },
+    },
+    [Modules.EVENT_BUS]: {
+      resolve: "@medusajs/medusa/event-bus-redis",
+      options: {
+        redisUrl: process.env.REDIS_URL,
+      },
+    },
+    [Modules.WORKFLOW_ENGINE]: {
+      resolve: "@medusajs/medusa/workflow-engine-redis",
+      options: {
+        redis: {
+          url: process.env.REDIS_URL,
+        },
+      },
+    },
+ 
 })
