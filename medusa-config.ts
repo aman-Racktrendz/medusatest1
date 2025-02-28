@@ -1,5 +1,4 @@
-import { loadEnv, defineConfig } from '@medusajs/framework/utils'
-
+import { loadEnv, defineConfig, Modules } from "@medusajs/framework/utils";
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
 module.exports = defineConfig({
@@ -22,15 +21,6 @@ module.exports = defineConfig({
     }
   },
    modules: {
-    [COMPANY_MODULE]: {
-      resolve: "./modules/company",
-    },
-    [QUOTE_MODULE]: {
-      resolve: "./modules/quote",
-    },
-    [APPROVAL_MODULE]: {
-      resolve: "./modules/approval",
-    },
     [Modules.CACHE]: {
       resolve: "@medusajs/medusa/cache-redis",
       options: {
@@ -50,6 +40,6 @@ module.exports = defineConfig({
           url: process.env.REDIS_URL,
         },
       },
-    },
- 
+    }
+   }
 })
